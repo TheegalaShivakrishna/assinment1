@@ -1,46 +1,225 @@
-# Getting Started with Create React App
+# React Component Library
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A comprehensive React component library built with TypeScript, Tailwind CSS, and Storybook.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### InputField Component
+- **Text input** with label, placeholder, helper text, error message
+- **States**: disabled, invalid, loading
+- **Variants**: filled, outlined, ghost
+- **Sizes**: small, medium, large
+- **Optional features**: clear button, password toggle
+- **Theme support**: light & dark mode
+- **Accessibility**: ARIA labels, keyboard navigation
 
-### `npm start`
+### DataTable Component
+- **Display tabular data** with customizable columns
+- **Column sorting** with visual indicators
+- **Row selection**: single or multiple selection
+- **Loading state** with skeleton animation
+- **Empty state** with custom messaging
+- **Responsive design** with horizontal scrolling
+- **Custom cell rendering** for complex data
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🛠️ Tech Stack
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **React 18** - Modern React with hooks
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Storybook** - Component development and documentation
+- **Heroicons** - Beautiful SVG icons
+- **PostCSS** - CSS processing
 
-### `npm test`
+## 📦 Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# Clone the repository
+git clone <repository-url>
+cd input-component
 
-### `npm run build`
+# Install dependencies
+npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Start development server
+npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Start Storybook
+npm run storybook
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Build for production
+npm run build
+```
 
-### `npm run eject`
+## 🎯 Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Navigation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application now has two main pages:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. **InputField Component Page** (`/`) - Showcases all InputField features
+2. **DataTable Component Page** (`/datatable`) - Demonstrates DataTable functionality
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Use the navigation bar at the top to switch between pages.
 
-## Learn More
+### InputField Component
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```tsx
+import { InputField } from './components';
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<InputField
+  label="Email Address"
+  placeholder="Enter your email"
+  helperText="We'll never share your email"
+  clearable={true}
+  variant="filled"
+  size="md"
+  onChange={handleChange}
+/>
+```
+
+### DataTable Component
+
+```tsx
+import { DataTable } from './components';
+
+const columns = [
+  { key: 'name', header: 'Name', sortable: true },
+  { key: 'email', header: 'Email', sortable: true },
+  { 
+    key: 'status', 
+    header: 'Status', 
+    render: (value) => <StatusBadge status={value} />
+  }
+];
+
+<DataTable
+  data={users}
+  columns={columns}
+  selectable="multiple"
+  onRowSelect={handleSelection}
+/>
+```
+
+## 🎨 Component Features
+
+### InputField Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | `''` | Input value |
+| `onChange` | `function` | - | Change handler |
+| `label` | `string` | - | Input label |
+| `placeholder` | `string` | - | Placeholder text |
+| `helperText` | `string` | - | Helper text below input |
+| `errorMessage` | `string` | - | Error message |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `invalid` | `boolean` | `false` | Invalid state |
+| `loading` | `boolean` | `false` | Loading state |
+| `variant` | `'filled' \| 'outlined' \| 'ghost'` | `'filled'` | Visual variant |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Input size |
+| `clearable` | `boolean` | `false` | Show clear button |
+| `showPasswordToggle` | `boolean` | `false` | Show password toggle |
+
+### DataTable Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `T[]` | `[]` | Array of data objects |
+| `columns` | `Column<T>[]` | `[]` | Column definitions |
+| `loading` | `boolean` | `false` | Show loading state |
+| `selectable` | `'single' \| 'multiple' \| false` | `false` | Row selection type |
+| `onRowSelect` | `function` | - | Selection change handler |
+| `emptyMessage` | `string` | `'No data available'` | Empty state message |
+| `className` | `string` | `''` | Additional CSS classes |
+| `id` | `string` | - | Component ID |
+
+## 🌙 Theme Support
+
+Both components support light and dark themes:
+
+- **Light theme**: Clean, modern appearance with subtle shadows
+- **Dark theme**: Dark backgrounds with high contrast text
+- **Automatic switching**: Use the theme toggle button in the header
+- **CSS variables**: Smooth transitions between themes
+
+## 📱 Responsive Design
+
+- **Mobile-first** approach
+- **Breakpoint responsive** layouts
+- **Touch-friendly** interactions
+- **Accessible** on all device sizes
+
+## 🧪 Storybook
+
+View and interact with components in isolation:
+
+```bash
+npm run storybook
+```
+
+Stories are available for:
+- All InputField variants, sizes, and states
+- DataTable with different data types and configurations
+- Interactive examples with real data
+
+## 🔧 Customization
+
+### Tailwind CSS
+
+Customize the design system by modifying `tailwind.config.js`:
+
+```js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: { /* your colors */ },
+        error: { /* your colors */ },
+        success: { /* your colors */ }
+      }
+    }
+  }
+}
+```
+
+### Component Styling
+
+Override default styles using Tailwind classes:
+
+```tsx
+<InputField
+  className="border-2 border-purple-300"
+  // ... other props
+/>
+```
+
+## 🌐 Browser Support
+
+- **Modern browsers**: Chrome, Firefox, Safari, Edge
+- **ES6+ features** with Babel transpilation
+- **CSS Grid and Flexbox** for layouts
+- **Progressive enhancement** approach
+
+## 📝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+MIT License - see LICENSE file for details
+
+## 🆘 Support
+
+For questions or issues:
+- Check the Storybook documentation
+- Review component props and examples
+- Open an issue on GitHub
+
+---
+
+Built with ❤️ using React, TypeScript, and Tailwind CSS
